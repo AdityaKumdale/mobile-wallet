@@ -32,7 +32,7 @@ import org.mifos.mobilewallet.mifospay.utils.Toaster.showToast
 import java.io.File
 import javax.inject.Inject
 
-class ReceiptUtils @Inject constructor(private val rContext: Context ) {
+class ReceiptUtils (private val rContext: Context ) {
 
     fun writeReceiptToPDF(
         responseBody: ResponseBody?,
@@ -159,7 +159,7 @@ class ReceiptUtils @Inject constructor(private val rContext: Context ) {
         }
     }
 
-    fun openPassCodeActivity(context: Context,deepLinkURI:Uri?, startActivityLauncher: ActivityResultLauncher<Intent>) {
+    fun openPassCodeActivity(context: Context,deepLinkURI:Uri?) {
         val i = Intent(context as Activity, PassCodeActivity::class.java)
         i.putExtra("uri", deepLinkURI.toString())
         /**
@@ -167,7 +167,7 @@ class ReceiptUtils @Inject constructor(private val rContext: Context ) {
          * open a new receipt activity
          */
         i.putExtra(PassCodeConstants.PASSCODE_INITIAL_LOGIN, true)
-        startActivityLauncher.launch(i)
+        context.startActivity(i)
     }
 
 

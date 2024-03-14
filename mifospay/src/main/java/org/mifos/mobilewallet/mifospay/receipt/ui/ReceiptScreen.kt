@@ -67,7 +67,6 @@ fun ReceiptScreen(
     deepLinkURI = data
     var uri: String? = null
     val receiptUtils =  ReceiptUtils(context)
-    val startActivityLauncher = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { }
 
 
 
@@ -92,7 +91,7 @@ fun ReceiptScreen(
             MifosOverlayLoadingWheel(contentDesc = stringResource(R.string.loading))
         }
         ReceiptUiState.OpenPassCodeActivity -> {
-            receiptUtils.openPassCodeActivity(context,deepLinkURI,startActivityLauncher)
+            receiptUtils.openPassCodeActivity(context,deepLinkURI)
         }
         is ReceiptUiState.Error -> {
             val message = state.message
@@ -336,7 +335,7 @@ fun bottomIcons(
 @Preview
 @Composable
 fun ReceiptPreview() {
-    val context: Context = LocalContext.current
+    val context = LocalContext.current
     Receipt(
                 rUiState = ReceiptUiState.TransactionReceipt(transaction = Transaction()),
                 transaction = Transaction(),
