@@ -31,8 +31,10 @@ import org.mifos.mobilewallet.mifospay.receipt.presenter.ReceiptViewModel
 import org.mifos.mobilewallet.mifospay.utils.Toaster.showToast
 import java.io.File
 import javax.inject.Inject
+import javax.inject.Singleton
 
-class ReceiptUtils (private val rContext: Context ) {
+
+class ReceiptUtils @Inject constructor (private val rContext: Context ) {
 
     fun writeReceiptToPDF(
         responseBody: ResponseBody?,

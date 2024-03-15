@@ -12,6 +12,7 @@ import org.mifos.mobilewallet.core.domain.usecase.account.DownloadTransactionRec
 import org.mifos.mobilewallet.core.domain.usecase.account.FetchAccountTransaction
 import org.mifos.mobilewallet.core.domain.usecase.account.FetchAccountTransfer
 import org.mifos.mobilewallet.datastore.PreferencesHelper
+import org.mifos.mobilewallet.mifospay.receipt.ReceiptUtils
 import org.mifos.mobilewallet.mifospay.utils.Constants
 import javax.inject.Inject
 
@@ -22,7 +23,7 @@ class ReceiptViewModel @Inject constructor(
     private val downloadTransactionReceiptUseCase: DownloadTransactionReceipt,
     private val fetchAccountTransactionUseCase: FetchAccountTransaction,
     private val fetchAccountTransferUseCase: FetchAccountTransfer,
-
+    private  val receiptUtil : ReceiptUtils
 ):ViewModel(){
     private val _receiptState = MutableStateFlow<ReceiptUiState>(ReceiptUiState.Loading)
     val receiptState: StateFlow<ReceiptUiState> = _receiptState.asStateFlow()
@@ -33,8 +34,7 @@ class ReceiptViewModel @Inject constructor(
             object : UseCase.UseCaseCallback<DownloadTransactionReceipt.ResponseValue> {
                 override fun onSuccess(response: DownloadTransactionReceipt.ResponseValue) {
                     val filename = Constants.RECEIPT + transactionId + Constants.PDF
-                    //Todo:provide an instance of ReceiptUtils in a Dagger module and call writeReceiptToPDF
-                // ReceiptUtils.writeReceiptToPDF(response.responseBody, filename)
+                    receiptUtil.writeReceiptToPDF(response.responseBody, filename)
                 }
                 override fun onError(message: String) {
                     _receiptState.value = ReceiptUiState.Error(message)
