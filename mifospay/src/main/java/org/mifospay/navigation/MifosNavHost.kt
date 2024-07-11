@@ -149,13 +149,14 @@ fun MifosNavHost(
 
         readQrScreen(
             onBackClick = navController::popBackStack
-
+        )
 
         specificTransactionsScreen(
             onBackClick = navController::popBackStack,
             onTransactionItemClicked = { transactionId ->
                 context.startActivityViewReceipt(transactionId)
             }
+        )
 
         invoiceDetailScreen(
             onBackPress = { navController.popBackStack() }
