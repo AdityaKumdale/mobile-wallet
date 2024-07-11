@@ -1,7 +1,6 @@
 package org.mifospay.navigation
 
 import android.content.Context
-import android.content.Intent
 import android.net.Uri
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -185,10 +184,6 @@ fun MifosNavHost(
             onBackClick = navController::popBackStack
         )
     }
-}
-
-fun Context.startActivityEditProfile() {
-    startActivity(Intent(this, EditProfileActivity::class.java))
 }
 
 fun Context.openPassCodeActivity(deepLinkURI: Uri) {
