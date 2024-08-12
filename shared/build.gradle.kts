@@ -11,7 +11,11 @@ kotlin {
             }
         }
     }
-    
+
+    js(IR) {
+        browser()
+    }
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -23,9 +27,15 @@ kotlin {
         }
     }
 
+
     sourceSets {
         commonMain.dependencies {
             //put your multiplatform dependencies here
+        }
+        val jsMain by getting {
+            dependencies {
+                // Js specific dependencies
+            }
         }
     }
 }

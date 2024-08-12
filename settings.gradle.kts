@@ -21,6 +21,7 @@ dependencyResolutionManagement {
         jcenter()
         maven("https://www.jitpack.io")
         maven("https://plugins.gradle.org/m2/")
+        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
 }
 rootProject.name = "mobile-wallet"
@@ -64,3 +65,4 @@ include(":feature:upi-setup")
 include(":feature:qr")
 include(":feature:home")
 include(":shared")
+include(":Web")
